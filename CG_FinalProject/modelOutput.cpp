@@ -83,8 +83,10 @@ void setTransform(int idx) {  // 변환 세팅
 }
 
 void modelOutput(int idx) {  // 모델 출력 
+	unsigned int objColorLocation = glGetUniformLocation(ID, "objectColor"); //색깔
 	switch (idx) {
 	case 0:
+		glUniform3f(objColorLocation, 1, 0.5, 0.5);
 		glDrawArrays(GL_TRIANGLES, 0, 36);  // 큐브 출력
 		break;
 	case 1:
