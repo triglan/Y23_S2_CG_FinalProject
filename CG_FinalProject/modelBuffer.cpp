@@ -22,6 +22,9 @@ void vertexInput(int idx) {  // vertex
 	switch (idx) {  // 여기에 노말값이 담긴 버텍스 데이터 추가
 	case 0:
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertexCube), vertexCube, GL_STATIC_DRAW);
+		break;	
+	case 1:
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertexCube), vertexCube, GL_STATIC_DRAW);
 		break;
 	}
 }

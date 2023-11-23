@@ -22,7 +22,7 @@
 
 using namespace std;
 
-#define MODEL_COUNT 1
+#define MODEL_COUNT 2
 
 enum bufferMode {  // 버퍼 모드. 버퍼 초기화 시 modeInit 사용, 버텍스 업데이트 시 modeUpdate 사용 
 	modeInit, modeUpdate

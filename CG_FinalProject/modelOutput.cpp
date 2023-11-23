@@ -40,7 +40,7 @@ void finishTransform(int idx) {  // 변환 전달
 void setCamera() {  // 카메라 세팅
 	using namespace glm;
 	view = mat4(1.0f);
-	cameraPos = vec3(0.0f, 5.0f, 10.0f);
+	cameraPos = vec3(3.0f, 3.0f, 10.0f);
 	cameraDirection = vec3(0.0f, 0.0f, 0.0f);
 	cameraUp = vec3(0.0f, 1.0f, 0.0f);
 	view = lookAt(cameraPos, cameraDirection, cameraUp);
@@ -72,7 +72,12 @@ void setTransform(int idx) {  // 변환 세팅
 	transformMatrix = mat4(1.0f);
 	switch (idx) {  // 변환 추가 
 	case 0:
-		//
+		//transformMatrix = glm::translate(transformMatrix, glm::vec3(1, 0, 0));//위치
+		transformMatrix = glm::scale(transformMatrix, glm::vec3(1, 1, 3));//위치
+		break;
+	case 1:
+		transformMatrix = glm::translate(transformMatrix, glm::vec3(1, 0, 0));//위치
+		transformMatrix = glm::scale (transformMatrix, glm::vec3(0.2, 1.5, 1.5));//위치
 		break;
 	}
 }
@@ -82,5 +87,9 @@ void modelOutput(int idx) {  // 모델 출력
 	case 0:
 		glDrawArrays(GL_TRIANGLES, 0, 36);  // 큐브 출력
 		break;
+	case 1:
+		glDrawArrays(GL_TRIANGLES, 0, 36);  // 큐브 출력
+		break;
+
 	}
 }
