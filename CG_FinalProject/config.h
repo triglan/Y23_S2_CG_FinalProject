@@ -20,9 +20,16 @@
 #define X_POS 450
 #define Y_POS 50
 
+#define MODEL_COUNT 10000 // 모델 개수의 최대값
 using namespace std;
 
-#define MODEL_COUNT 2
+//전역 변수 선언
+typedef struct _OBJECTS {//translate 이동 xyz , scale 크기 xyz , rotate 회전 xyz 오브젝트 탬플릿
+	bool NewObject = false;// 미리 생성된 오브젝트면 이를 통과함. 게임중 생성된 오브젝트라면 true로 바꾸고 아래를 사용함.
+	GLfloat tx, ty, tz;
+	GLfloat sx, sy, sz;
+	GLfloat rx, ry, rz;
+}OBJECTS;
 
 enum bufferMode {  // 버퍼 모드. 버퍼 초기화 시 modeInit 사용, 버텍스 업데이트 시 modeUpdate 사용 
 	modeInit, modeUpdate

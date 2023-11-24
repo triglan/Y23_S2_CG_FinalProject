@@ -128,6 +128,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cannon.cpp" />
+    <ClCompile Include="config.cpp" />
     <ClCompile Include="GL_key.cpp" />
     <ClCompile Include="GL_timer.cpp" />
     <ClCompile Include="main.cpp" />
