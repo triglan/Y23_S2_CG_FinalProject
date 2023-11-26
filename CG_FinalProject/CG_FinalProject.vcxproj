@@ -125,6 +125,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalOptions>freeglut.lib glew32.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -136,11 +137,15 @@
     <ClCompile Include="makeShader.cpp" />
     <ClCompile Include="modelBuffer.cpp" />
     <ClCompile Include="modelOutput.cpp" />
+    <ClCompile Include="RazerLauncher.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="buffer.h" />
+    <ClInclude Include="cannon.h" />
+    <ClInclude Include="objects.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="gl_func.h" />
+    <ClInclude Include="RazerLauncher.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="translate.h" />
   </ItemGroup>

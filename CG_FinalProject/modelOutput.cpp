@@ -1,15 +1,13 @@
 ﻿// 모델 변환 
 #include "translate.h"
+#include "config.h"
+#include "cannon.h"
+
 //모델 좌표 cpp파일은 여기에 임포트 -> ex) #include "cube_ebo.cpp"
 
 extern GLuint ID;
 extern GLuint VAO[MODEL_COUNT];  // MODEL_COUNT는 config.h에 정의되어있음
 
-glm::vec3 cameraPos, cameraDirection, cameraUp, lightPos;
-glm::mat4 transformMatrix, view, projection, lightMatrix;
-
-unsigned int projectionLocation, viewLocation, modelLocation, viewPosLocation;
-unsigned int lightPosLocation, lightColorLocation, objColorLocation;
 
 
 void finishTransform(int idx) {  // 변환 전달 
@@ -40,7 +38,7 @@ void finishTransform(int idx) {  // 변환 전달
 void setCamera() {  // 카메라 세팅
 	using namespace glm;
 	view = mat4(1.0f);
-	cameraPos = vec3(3.0f, 3.0f, 10.0f);
+	cameraPos = vec3(0.0f, 5.0f, 10.0f);
 	cameraDirection = vec3(0.0f, 0.0f, 0.0f);
 	cameraUp = vec3(0.0f, 1.0f, 0.0f);
 	view = lookAt(cameraPos, cameraDirection, cameraUp);
@@ -68,30 +66,27 @@ void setLight() {  // 조명 세팅
 }
 
 void setTransform(int idx) {  // 변환 세팅
-	using namespace glm;
-	transformMatrix = mat4(1.0f);
+	//using namespace glm;
+	transformMatrix = glm::mat4(1.0f);
+
+	if (objects[idx].NewObject)
+		cannon_setTransform(idx);
 	switch (idx) {  // 변환 추가 
-	case 0:
-		//transformMatrix = glm::translate(transformMatrix, glm::vec3(1, 0, 0));//위치
-		transformMatrix = glm::scale(transformMatrix, glm::vec3(1, 1, 3));//위치
-		break;
-	case 1:
-		transformMatrix = glm::translate(transformMatrix, glm::vec3(1, 0, 0));//위치
-		transformMatrix = glm::scale (transformMatrix, glm::vec3(0.2, 1.5, 1.5));//위치
+	case 100:
 		break;
 	}
 }
 
 void modelOutput(int idx) {  // 모델 출력 
-	unsigned int objColorLocation = glGetUniformLocation(ID, "objectColor"); //색깔
-	switch (idx) {
-	case 0:
-		glUniform3f(objColorLocation, 1, 0.5, 0.5);
-		glDrawArrays(GL_TRIANGLES, 0, 36);  // 큐브 출력
-		break;
-	case 1:
-		glDrawArrays(GL_TRIANGLES, 0, 36);  // 큐브 출력
-		break;
+	if (objects[idx].NewObject) {
+		glUniform3f(objColorLocation, objects[idx].r, objects[idx].g, objects[idx].b);
+		glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(transformMatrix));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+	}
+		
 
+	switch (idx) {
+	case 100:
+		break;
 	}
 }

@@ -21,12 +21,11 @@ GLuint VAO[MODEL_COUNT], VBO;  // MODEL_COUNT는 config.h에 정의되어있음
 void vertexInput(int idx) {  // vertex
 	switch (idx) {  // 여기에 노말값이 담긴 버텍스 데이터 추가
 	case 0:
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertexCube), vertexCube, GL_STATIC_DRAW);
-		break;	
-	case 1:
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertexCube), vertexCube, GL_STATIC_DRAW);
 		break;
 	}
+	if(idx <= 10000)
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertexCube), vertexCube, GL_STATIC_DRAW);
+
 }
 
 void setBuffer(int idx, int bufferMode) {

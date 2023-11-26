@@ -3,6 +3,8 @@
 #include "buffer.h"  // 버퍼
 #include "translate.h"  // 변환
 #include "gl_func.h"  // GL 기능 함수
+#include "cannon.h"
+#include "RazerLauncher.h"
 
 extern GLuint ID;
 int projectionMode = modePers;  // 직각투영/원근투영, 기본 원근투영 모드, modeOrtho로 변경 시 알아서 바뀜
@@ -47,7 +49,13 @@ void main(int argc, char** argv) {
 		glEnable(GL_MULTISAMPLE);
 		makeShaderProgram();
 	}
-
+	{//유저
+		for (int i = 0; i < 12; i++)
+		{
+			make_cannon(-7, 1, i * 30);
+		}
+		make_razerLauncher(0, 1, 0);
+	}
 	// MODEL_COUNT는 config.h에 정의되어있음
 	for(int i = 0; i < MODEL_COUNT; i ++)  // MODEL_COUNT 만큼 버퍼 초기화
 		setBuffer(i, modeInit);  // modelBuffer.cpp에 있음
@@ -55,7 +63,7 @@ void main(int argc, char** argv) {
 	glutDisplayFunc(displayOutput);
 	glutReshapeFunc(displayReshape);
 	glutKeyboardFunc(keyDown);
-	glutKeyboardUpFunc(keyUp);
+	glutKeyboardUpFunc(keyUp); 
 	glutTimerFunc(10, timerOperation, 1);
 	glutMainLoop();
 }
