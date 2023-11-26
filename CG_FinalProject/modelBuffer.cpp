@@ -1,5 +1,9 @@
 ﻿// 모델 버퍼 
 #include "buffer.h"
+#include "sphere.h"
+
+std::vector<Vertex> vertices;
+GLuint vertexCount = loadObj("sphere.obj", vertices);
 
 GLfloat vertexCube[] = { // 버텍스 속성: 좌표값(FragPos), 노말값 (Normal)
 	-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f,		 0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f,			0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f,

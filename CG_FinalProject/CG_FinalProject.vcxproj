@@ -137,7 +137,9 @@
     <ClCompile Include="makeShader.cpp" />
     <ClCompile Include="modelBuffer.cpp" />
     <ClCompile Include="modelOutput.cpp" />
+    <ClCompile Include="Razer.cpp" />
     <ClCompile Include="RazerLauncher.cpp" />
+    <ClCompile Include="sphere.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="buffer.h" />
@@ -145,8 +147,10 @@
     <ClInclude Include="objects.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="gl_func.h" />
+    <ClInclude Include="Razer.h" />
     <ClInclude Include="RazerLauncher.h" />
     <ClInclude Include="shader.h" />
+    <ClInclude Include="sphere.h" />
     <ClInclude Include="translate.h" />
   </ItemGroup>
   <ItemGroup>

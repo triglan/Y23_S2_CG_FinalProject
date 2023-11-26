@@ -14,6 +14,9 @@
 #include <gl/freeglut.h>
 #include <gl/freeglut_ext.h>
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
 
 #define WIDTH 800  
 #define HEIGHT 800
@@ -25,7 +28,7 @@ using namespace std;
 
 //구조체 선언
 typedef struct _OBJECTS {//translate 이동 xyz , scale 크기 xyz , rotate 회전 xyz 오브젝트 탬플릿
-	bool NewObject = false;// 미리 생성된 오브젝트면 이를 통과함. 게임중 생성된 오브젝트라면 true로 바꾸고 아래를 사용함.
+	char NewObject = '0';// 미리 생성된 오브젝트면 이를 통과함. 게임중 생성된 오브젝트라면 true로 바꾸고 아래를 사용함.
 	GLfloat tx, ty, tz;
 	GLfloat sx, sy, sz;
 	GLfloat rx, ry, rz;

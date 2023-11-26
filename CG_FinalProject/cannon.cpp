@@ -15,6 +15,7 @@ void make_cannon(GLfloat tz, GLfloat size, GLfloat angle) {//불러올 때 마다 생성
 			objects[object_num].g = 0.75;
 			objects[object_num].b = 0.75;
 			objects[object_num].NewObject = true;
+			objects[object_num].NewObject = 'C';
 		}
 		//대포 오른쪽 바퀴
 		{
@@ -24,10 +25,11 @@ void make_cannon(GLfloat tz, GLfloat size, GLfloat angle) {//불러올 때 마다 생성
 			objects[object_num + 1].sy = size * 1.5;
 			objects[object_num + 1].sz = size * 1.5;
 			objects[object_num + 1].ry = angle;
-			objects[object_num].r = 0.75;
-			objects[object_num].g = 0.5;
-			objects[object_num].b = 0.0;
+			objects[object_num + 1].r = 0.75;
+			objects[object_num + 1].g = 0.5;
+			objects[object_num + 1].b = 0.0;
 			objects[object_num + 1].NewObject = true;
+			objects[object_num + 1].NewObject = 'C';
 		}
 		//대포 왼쪽 바퀴
 		{
@@ -37,10 +39,11 @@ void make_cannon(GLfloat tz, GLfloat size, GLfloat angle) {//불러올 때 마다 생성
 			objects[object_num + 2].sy = size * 1.5;
 			objects[object_num + 2].sz = size * 1.5;
 			objects[object_num + 2].ry = angle;
-			objects[object_num].r = 0.75;
-			objects[object_num].g = 0.5;
-			objects[object_num].b = 0.0;
+			objects[object_num + 2].r = 0.75;
+			objects[object_num + 2].g = 0.5;
+			objects[object_num + 2].b = 0.0;
 			objects[object_num + 2].NewObject = true;
+			objects[object_num + 2].NewObject = 'C';
 		}
 		object_num += 3;
 	}

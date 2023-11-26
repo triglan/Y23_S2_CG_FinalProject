@@ -15,6 +15,7 @@ void make_razerLauncher(GLfloat tz, GLfloat size, GLfloat angle) {//불러올 때 마
 			objects[object_num].g = 0.25;
 			objects[object_num].b = 0.25;
 			objects[object_num].NewObject = true;
+			objects[object_num].NewObject = 'R';
 		}
 		//레이저 머리
 		{
@@ -24,12 +25,27 @@ void make_razerLauncher(GLfloat tz, GLfloat size, GLfloat angle) {//불러올 때 마
 			objects[object_num + 1].sy = size * 0.5;
 			objects[object_num + 1].sz = size * 0.5;
 			objects[object_num + 1].ry = angle;
-			objects[object_num].r = 1;
-			objects[object_num].g = 0.15;
-			objects[object_num].b = 0.15;
+			objects[object_num + 1].r = 0.15;
+			objects[object_num + 1].g = 0.8;
+			objects[object_num + 1].b = 0.15;
 			objects[object_num + 1].NewObject = true;
+			objects[object_num + 1].NewObject = 'R';
 		}
-		object_num += 2;
+		//레이저 총안구
+		{
+			objects[object_num + 2].ty = 0.0;
+			objects[object_num + 2].tz = tz + 1;
+			objects[object_num + 2].sx = size * 0.5;
+			objects[object_num + 2].sy = size * 0.5;
+			objects[object_num + 2].sz = size * 0.5;
+			objects[object_num + 2].ry = angle;
+			objects[object_num + 2].r = 1;
+			objects[object_num + 2].g = 0.05;
+			objects[object_num + 2].b = 0.05;
+			objects[object_num + 2].NewObject = true;
+			objects[object_num + 2].NewObject = 'R';
+		}
+		object_num += 3;
 	}
 }
 

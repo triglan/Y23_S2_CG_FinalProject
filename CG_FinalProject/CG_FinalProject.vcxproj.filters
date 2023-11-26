@@ -42,6 +42,12 @@
     <ClCompile Include="RazerLauncher.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Razer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="sphere.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shader.h">
@@ -66,6 +72,12 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="RazerLauncher.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Razer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="sphere.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
