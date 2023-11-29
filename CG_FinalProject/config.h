@@ -23,7 +23,7 @@
 #define X_POS 450
 #define Y_POS 50
 
-#define MODEL_COUNT 300 // 모델 개수의 최대값
+#define MODEL_COUNT 2000 // 모델 개수의 최대값
 using namespace std;
 
 //구조체 선언
@@ -33,17 +33,22 @@ typedef struct _OBJECTS {//translate 이동 xyz , scale 크기 xyz , rotate 회�
 	GLfloat sx, sy, sz;
 	GLfloat rx, ry, rz;
 	GLfloat r = 0.5, g = 0.5, b = 0.5;
+	int lifetime = 0;
+	bool life = true;
 }OBJECTS;
 
 //전역 변수 선언
 extern int object_num;
-extern OBJECTS objects[300];//cpp에 선언하고 h에서 전방선언하기
+extern int cannonball_num;
+extern OBJECTS objects[MODEL_COUNT];//cpp에 선언하고 h에서 전방선언하기
 
 extern glm::vec3 cameraPos, cameraDirection, cameraUp, lightPos;
 extern glm::mat4 transformMatrix, view, projection, lightMatrix;
 
 extern unsigned int projectionLocation, viewLocation, modelLocation, viewPosLocation;
 extern unsigned int lightPosLocation, lightColorLocation, objColorLocation;
+
+extern int TIMER_SPEED;
 
 enum bufferMode {  // 버퍼 모드. 버퍼 초기화 시 modeInit 사용, 버텍스 업데이트 시 modeUpdate 사용 
 	modeInit, modeUpdate

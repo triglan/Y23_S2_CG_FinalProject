@@ -15,7 +15,7 @@ GLvoid displayOutput() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  
 	glUseProgram(ID);
 	
-	setCamera(); // 이 부분은 여기서 건들 필요 없음
+	 	setCamera(); // 이 부분은 여기서 건들 필요 없음
 	setProjection(projectionMode); // 이 부분은 여기서 건들 필요 없음
 	setLight();
 
@@ -57,7 +57,6 @@ void main(int argc, char** argv) {
 			make_cannon(-10, 1, i * 30);
 		}
 		make_razerLauncher(-10, 1, 0);
-		make_razer(0, 1, 0);
 	}
 	// MODEL_COUNT는 config.h에 정의되어있음
 	for(int i = 0; i < MODEL_COUNT; i ++)  // MODEL_COUNT 만큼 버퍼 초기화
@@ -67,6 +66,6 @@ void main(int argc, char** argv) {
 	glutReshapeFunc(displayReshape);
 	glutKeyboardFunc(keyDown);
 	glutKeyboardUpFunc(keyUp); 
-	glutTimerFunc(10, timerOperation, 1);
+	glutTimerFunc(TIMER_SPEED, timerOperation, 1);
 	glutMainLoop();
 }

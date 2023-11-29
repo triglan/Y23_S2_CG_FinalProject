@@ -75,34 +75,37 @@ void setTransform(int idx) {  // 변환 세팅
 		cannon_setTransform(idx);
 		break;
 	}
-	case 'R'://대문자 C는 발사대 변화
+	case 'R'://
 	{
 		razerLauncher_setTransform(idx);
 		break;
 	}
-	case 'r'://대문자 C는 발사대 변화
+	case 'r'://
 	{
 		razer_setTransform(idx);
 		break;
 	}
-	}
-	switch (idx) {  // 변환 추가 
-	case 100:
+	case 'c'://캐논 볼
+	{
+		cannon_setTransform(idx);
 		break;
+	}
 	}
 }
 
 void modelOutput(int idx) {  // 모델 출력 
 	if (objects[idx].NewObject != '0') {
 		glUniform3f(objColorLocation, objects[idx].r, objects[idx].g, objects[idx].b);
+
 		glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(transformMatrix));
-		glDrawArrays(GL_TRIANGLES, 0, 36);
+		if (idx >= 1000)
+			glDrawArrays(GL_TRIANGLES, 0, vertices.size());
+		else
+			glDrawArrays(GL_TRIANGLES, 0, 36);
 	}
 
 	switch (idx) {
-	case 200://포탄 출력 중
-		glUniform3f(objColorLocation, 0, 1, 0.5);
-		glDrawArrays(GL_TRIANGLES, 0, vertices.size());
+	case 200:
 		break;
 	}
 }

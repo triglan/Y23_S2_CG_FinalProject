@@ -14,7 +14,6 @@ void make_cannon(GLfloat tz, GLfloat size, GLfloat angle) {//불러올 때 마다 생성
 			objects[object_num].r = 0.75;
 			objects[object_num].g = 0.75;
 			objects[object_num].b = 0.75;
-			objects[object_num].NewObject = true;
 			objects[object_num].NewObject = 'C';
 		}
 		//대포 오른쪽 바퀴
@@ -28,7 +27,6 @@ void make_cannon(GLfloat tz, GLfloat size, GLfloat angle) {//불러올 때 마다 생성
 			objects[object_num + 1].r = 0.75;
 			objects[object_num + 1].g = 0.5;
 			objects[object_num + 1].b = 0.0;
-			objects[object_num + 1].NewObject = true;
 			objects[object_num + 1].NewObject = 'C';
 		}
 		//대포 왼쪽 바퀴
@@ -42,11 +40,23 @@ void make_cannon(GLfloat tz, GLfloat size, GLfloat angle) {//불러올 때 마다 생성
 			objects[object_num + 2].r = 0.75;
 			objects[object_num + 2].g = 0.5;
 			objects[object_num + 2].b = 0.0;
-			objects[object_num + 2].NewObject = true;
 			objects[object_num + 2].NewObject = 'C';
 		}
 		object_num += 3;
 	}
+}
+
+void make_cannonball(GLfloat tz, GLfloat size, GLfloat angle) {
+	objects[cannonball_num].tz = tz;
+	objects[cannonball_num].sx = size;
+	objects[cannonball_num].sy = size;
+	objects[cannonball_num].sz = size;
+	objects[cannonball_num].ry = angle;
+	objects[cannonball_num].r = 0.8;
+	objects[cannonball_num].g = 0.8;
+	objects[cannonball_num].b = 0.8;
+	objects[cannonball_num].NewObject = 'c';
+	cannonball_num += 1;
 }
 
 void cannon_setTransform(int idx) {  //해당 model_count의 캐논의 변환
