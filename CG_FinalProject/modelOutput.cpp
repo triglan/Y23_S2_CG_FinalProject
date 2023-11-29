@@ -98,7 +98,6 @@ void modelOutput(int idx) {  // 모델 출력
 		glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(transformMatrix));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 	}
-		
 
 	switch (idx) {
 	case 200://포탄 출력 중

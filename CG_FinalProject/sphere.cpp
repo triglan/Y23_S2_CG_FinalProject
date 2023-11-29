@@ -1,4 +1,5 @@
 #include "sphere.h"
+#include "config.h"
 
 GLuint loadObj(const char* filename, std::vector<Vertex>& vertices) {
     std::ifstream file(filename);
