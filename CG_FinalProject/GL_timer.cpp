@@ -23,9 +23,12 @@ void timerOperation(int value) {
 	for (int i = 0; i < MODEL_COUNT; i++) {
 		if (objects[i].NewObject == 'r') {
 			objects[i].lifetime += 1;
-			objects[i].ry += 1;
-			if (objects[i].lifetime > 100)
+			if (objects[i].lifetime > 100) {
+				objects[i].ry += 1;
+			}
+			if (objects[i].lifetime > 200) {
 				objects[i].NewObject = '0';
+			}
 		}
 	}
 
