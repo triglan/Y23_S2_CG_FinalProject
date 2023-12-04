@@ -52,11 +52,10 @@ void main(int argc, char** argv) {
 		makeShaderProgram();
 	}
 	{//유저
-		for (int i = 1; i < 12; i++)
+		for (int i = 0; i < 12; i++)
 		{
-			make_cannon(-10, 1, i * 30);
+			make_cannon(-9, 1, i * 30);
 		}
-		make_razerLauncher(-10, 1, 0);
 	}
 	// MODEL_COUNT는 config.h에 정의되어있음
 	for(int i = 0; i < MODEL_COUNT; i ++)  // MODEL_COUNT 만큼 버퍼 초기화

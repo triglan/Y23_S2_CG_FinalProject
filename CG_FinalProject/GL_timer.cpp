@@ -3,6 +3,7 @@
 #include "gl_func.h"
 #include "cannon.h"
 #include "Razer.h"
+#include "RazerLauncher.h"
 #include <iostream>
 #include <random>
 
@@ -21,10 +22,21 @@ void timerOperation(int value) {
 			objects[i].NewObject = '0';
 	}
 	for (int i = 0; i < MODEL_COUNT; i++) {
-		if (objects[i].NewObject == 'r') {
+		if (objects[i].NewObject == 'r' || objects[i].NewObject == 'R') {
 			objects[i].lifetime += 1;
+			if (objects[i].NewObject == 'r') {
+				objects[i].r = 0.5;
+				objects[i].g = 0.2;
+				objects[i].b = 0.2;
+
+			}
 			if (objects[i].lifetime > 100) {
 				objects[i].ry += 1;
+				if (objects[i].NewObject == 'r') {
+					objects[i].r = 1.0;
+					objects[i].g = 0.0;
+					objects[i].b = 0.0;
+				}
 			}
 			if (objects[i].lifetime > 200) {
 				objects[i].NewObject = '0';
@@ -40,6 +52,8 @@ void timerOperation(int value) {
 	else if (makecannonball_count % 70 == 0) {
 		int randomAngle = dis(gen) * 30;
 		make_razer(0, 1, randomAngle);
+		make_razerLauncher(-10, 1, randomAngle);
+
 	}
 	makecannonball_count++;
 
