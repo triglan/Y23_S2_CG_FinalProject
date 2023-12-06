@@ -28,7 +28,6 @@ void timerOperation(int value) {
 	//랜덤 생성
 	std::random_device rd;
 	std::mt19937 gen(rd());
-	std::uniform_int_distribution<> dis(0, 4); // 0부터 12까지의 범위에서 랜덤한 수 생성
 
 	static int makecannonball_count = 1;//포탄 생산 카운트
 	//포탄 이동
@@ -38,6 +37,7 @@ void timerOperation(int value) {
 		if(objects[i].tz >= 10)
 			objects[i].NewObject = '0';
 	}
+	//레이저
 	for (int i = 0; i < MODEL_COUNT; i++) {
 		if (objects[i].NewObject == 'r' || objects[i].NewObject == 'R') {
 			objects[i].lifetime += 1;
@@ -48,7 +48,7 @@ void timerOperation(int value) {
 
 			}
 			if (objects[i].lifetime > 100) {
-				//objects[i].ry += 1;
+				objects[i].tx += 0.05;
 				if (objects[i].NewObject == 'r') {
 					objects[i].r = 1.0;
 					objects[i].g = 0.0;
@@ -63,18 +63,19 @@ void timerOperation(int value) {
 
 	//포탄 생산
 	if (makecannonball_count % 100 == 0) {
+		std::uniform_int_distribution<> dis(0, 4); // 0부터 12까지의 범위에서 랜덤한 수 생성
 		int randomAngle = 15 + dis(gen) * 30; //30배수로 랜덤 각도 생성
 		make_cannonball(-10, 0.05, randomAngle);
 	}
 	else if (makecannonball_count % 70 == 0) {
-		int randomAngle = dis(gen) * 90;
-		make_razer(0, 1, randomAngle);
-		make_razerLauncher(-10, 1, randomAngle);
-
+		std::uniform_int_distribution<> dis(-10, 10);
+		int randomx = dis(gen);
+		make_razer(0, 1, randomx);
+		make_razerLauncher(-10, 1, randomx);
 	}
 	makecannonball_count++;
 
-	SunAngle += 0.2f;
+	SunAngle += 0.02f;
 
 	//이동
 	{

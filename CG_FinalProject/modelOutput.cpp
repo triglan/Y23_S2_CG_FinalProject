@@ -67,10 +67,10 @@ void setProjection(int projectionMode) {  // 투영 세팅
 	projection = mat4(1.0f);
 	switch (projectionMode) {
 	case modePers:
-		projection = perspective(radians(45.0f), 1.0f, 0.1f, 100.0f);
+		projection = perspective(radians(45.0f), 1.0f, 0.1f, 200.0f);
 		break;
 	case modeOrtho:
-		projection = ortho(-3.0f, 3.0f, -3.0f, 3.0f, 1.0f, 100.0f);
+		projection = ortho(-3.0f, 3.0f, -3.0f, 3.0f, 1.0f, 200.0f);
 		break;
 	}
 }
@@ -78,7 +78,7 @@ void setLight() {  // 조명 세팅
 	using namespace glm;
 	lightMatrix = mat4(1.0f);
 	lightMatrix = glm::rotate(lightMatrix, glm::radians(SunAngle), glm::vec3(0.0, 0.0, 1.0)); //y축 기준 자전
-	lightMatrix = glm::translate(lightMatrix, glm::vec3(0.0f, 5.0f, 0.0f));//크기
+	lightMatrix = glm::translate(lightMatrix, glm::vec3(0.0f, 8.0f, 0.0f));//크기
 	lightPos = vec3(0.0f, 0.0f, 0.0f);  // 조명 위치
 	vec3 initialLightPos = vec3(lightPos.x, lightPos.y, lightPos.z);
 	lightPos = lightMatrix * vec4(initialLightPos, 1.0f);
@@ -171,8 +171,15 @@ void setTransform(int idx) {  // 변환 세팅
 	case 32: // TODO :: 태양
 	{
 		transformMatrix = glm::rotate(transformMatrix, glm::radians(SunAngle), glm::vec3(0.0, 0.0, 1.0)); //z축 기준 자전
-		transformMatrix = glm::translate(transformMatrix, glm::vec3(0, 5.f, 0));//위치
+		transformMatrix = glm::translate(transformMatrix, glm::vec3(0, 8.f, 0));//위치
 		transformMatrix = glm::scale(transformMatrix, glm::vec3(1, 1, 1));//크기
+
+		break;
+	}
+	case 33: // TODO :: 벽
+	{
+		transformMatrix = glm::translate(transformMatrix, glm::vec3(0.f, 0.f, -100.f));//위치
+		transformMatrix = glm::scale(transformMatrix, glm::vec3(200, 200, 1));//크기
 
 		break;
 	}
@@ -223,19 +230,13 @@ void modelOutput(int idx) {  // 모델 출력
 		glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(robot_dir_transfrom)); // modelTransform
 		glDrawArrays(GL_TRIANGLES, 0, 36);  //
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-		glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(robot_bb)); // modelTransform
-		glDrawArrays(GL_TRIANGLES, 0, 36);  //
+		//glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(robot_bb)); // modelTransform
+		//glDrawArrays(GL_TRIANGLES, 0, 36);  //
 
 		break;
 	}
 
-	case 1:
-	{
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-		glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(box_transfrom));
-		glDrawArrays(GL_TRIANGLES, 0, 36);
-		break;
-	}
+
 	case 30: // TODO :: 모래
 	{
 		glUniform3f(objColorLocation, 0.95, 0.95, 0.7);
@@ -260,6 +261,14 @@ void modelOutput(int idx) {  // 모델 출력
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 		break;
 	}
+	case 33: // TODO :: 벽
+	{
+		glUniform3f(objColorLocation, 0.2, 0.2, 0.6);
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(transformMatrix));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		break;
+	}
 	}
 	
 	if (objects[idx].NewObject != '0') {
@@ -273,9 +282,9 @@ void modelOutput(int idx) {  // 모델 출력
 		else if (2000 <= idx&& idx<3000)
 		{
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-			glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(transformMatrix2));
-			glDrawArrays(GL_TRIANGLES, 0, 36);
-			//crash(transformMatrix2, robot_bb);//
+			//glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(transformMatrix2));
+			//glDrawArrays(GL_TRIANGLES, 0, 36);
+			crash(transformMatrix2, robot_bb);//
 		}
 		else
 		{

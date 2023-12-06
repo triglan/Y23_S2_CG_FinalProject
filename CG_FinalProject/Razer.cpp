@@ -2,15 +2,15 @@
 #include "config.h"
 #include "objects.h"
 
-void make_razer(GLfloat tz, GLfloat size, GLfloat angle) {//불러올 때 마다 생성
+void make_razer(GLfloat tz, GLfloat size, GLfloat tx) {//불러올 때 마다 생성
 	if (object_num < 100000 - 3) {
 		//레이저 발사대 몸통
 		{//tz는 -값으로 넣어야 뒤에서 대포가 정면을 바라보고 있음
 			objects[object_num].tz = tz;
+			objects[object_num].tx = tx;
 			objects[object_num].sx = size * 0.1;
 			objects[object_num].sy = size * 0.1;
 			objects[object_num].sz = size * 20;
-			objects[object_num].ry = angle;
 			objects[object_num].r = 1.0;
 			objects[object_num].g = 0.1;
 			objects[object_num].b = 0.1;
