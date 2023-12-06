@@ -18,10 +18,10 @@ extern float go_fb;
 extern float robot_arm_angle;
 extern float go_jump;
 
-bool jump_max = 0.4;
+float jump_max = 1.2;//
 bool robot_joint_dir = true;
 bool jump_up_down = true;
-float robot_speed = 0.01;
+float robot_speed = 0.05;//
 int robot_joint_speed = 3;
 
 void timerOperation(int value) {
@@ -33,7 +33,7 @@ void timerOperation(int value) {
 	static int makecannonball_count = 1;//포탄 생산 카운트
 	//포탄 이동
 	for (int i = 0; i < MODEL_COUNT; i++) {
-		if (objects[i].NewObject == 'c')
+		if (objects[i].NewObject == 'c' || objects[i].NewObject == 'b')
 			objects[i].tz += 0.1;
 		if(objects[i].tz >= 10)
 			objects[i].NewObject = '0';
@@ -115,7 +115,7 @@ void timerOperation(int value) {
 		{
 			if (jump_up_down)
 			{
-				go_jump += 0.03;
+				go_jump += 0.04;
 				if (go_jump > jump_max)
 				{
 					jump_up_down = false;
@@ -123,10 +123,10 @@ void timerOperation(int value) {
 			}
 			else
 			{
-				go_jump -= 0.03;
+				go_jump -= 0.04;
 				if (go_jump < 0)
 				{
-					go_jump += 0.03;
+					go_jump += 0.04;
 					jump_up_down = true;
 					key_j = false;
 				}

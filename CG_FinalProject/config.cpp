@@ -6,6 +6,8 @@ int cannonball_num = 1000;
 
 glm::vec3 cameraPos, cameraDirection, cameraUp, lightPos;
 glm::mat4 transformMatrix, view, projection, lightMatrix;
+glm::mat4 transformMatrix2;//
+
 
 unsigned int projectionLocation, viewLocation, modelLocation, viewPosLocation;
 unsigned int lightPosLocation, lightColorLocation, objColorLocation;

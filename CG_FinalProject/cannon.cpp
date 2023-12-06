@@ -47,22 +47,48 @@ void make_cannon(GLfloat tz, GLfloat size, GLfloat angle) {//불러올 때 마다 생성
 }
 
 void make_cannonball(GLfloat tz, GLfloat size, GLfloat angle) {
-	objects[cannonball_num].tz = tz;
-	objects[cannonball_num].sx = size;
-	objects[cannonball_num].sy = size;
-	objects[cannonball_num].sz = size;
-	objects[cannonball_num].ry = angle;
-	objects[cannonball_num].r = 0.8;
-	objects[cannonball_num].g = 0.8;
-	objects[cannonball_num].b = 0.8;
-	objects[cannonball_num].NewObject = 'c';
+	{
+		objects[cannonball_num].tz = tz;
+		objects[cannonball_num].sx = size;
+		objects[cannonball_num].sy = size;
+		objects[cannonball_num].sz = size;
+		objects[cannonball_num].ry = angle;
+		objects[cannonball_num].r = 0.8;
+		objects[cannonball_num].g = 0.8;
+		objects[cannonball_num].b = 0.8;
+		objects[cannonball_num].NewObject = 'c';
+	}
+	{
+		objects[cannonball_num + 1000].tz = tz;
+		objects[cannonball_num + 1000].sx = 1;
+		objects[cannonball_num + 1000].sy = 1;
+		objects[cannonball_num + 1000].sz = 1;
+		objects[cannonball_num + 1000].ry = angle;
+		objects[cannonball_num + 1000].r = 0.8;
+		objects[cannonball_num + 1000].g = 0.8;
+		objects[cannonball_num + 1000].b = 0.8;
+		objects[cannonball_num + 1000].NewObject = 'b';
+	}
 	cannonball_num += 1;
 }
 
 void cannon_setTransform(int idx) {  //해당 model_count의 캐논의 변환
-	transformMatrix = glm::rotate(transformMatrix, glm::radians(objects[idx].rx), glm::vec3(1.0, 0.0, 0.0)); //x축 기준 자전
-	transformMatrix = glm::rotate(transformMatrix, glm::radians(objects[idx].ry), glm::vec3(0.0, 1.0, 0.0)); //y축 기준 자전
-	transformMatrix = glm::rotate(transformMatrix, glm::radians(objects[idx].rz), glm::vec3(0.0, 0.0, 1.0)); //z축 기준 자전
-	transformMatrix = glm::translate(transformMatrix, glm::vec3(objects[idx].tx, objects[idx].ty, objects[idx].tz));//위치
-	transformMatrix = glm::scale(transformMatrix, glm::vec3(objects[idx].sx, objects[idx].sy, objects[idx].sz));//크기
+	glm::mat4 S2 = glm::mat4(1.0f);//
+	
+	glm::mat4 R1 = glm::mat4(1.0f);//
+	glm::mat4 R2 = glm::mat4(1.0f);//
+	glm::mat4 R3 = glm::mat4(1.0f);//
+	glm::mat4 R4 = glm::mat4(1.0f);//
+	
+
+	glm::mat4 T1 = glm::mat4(1.0f);//
+	
+	R1 = glm::rotate(R1, glm::radians(objects[idx].rx), glm::vec3(1.0, 0.0, 0.0)); //x축 기준 자전 //
+	R2 = glm::rotate(R2, glm::radians(objects[idx].ry), glm::vec3(0.0, 1.0, 0.0)); //y축 기준 자전//
+	R3 = glm::rotate(R3, glm::radians(objects[idx].rz), glm::vec3(0.0, 0.0, 1.0)); //z축 기준 자전//
+	R4 = glm::rotate(R4, glm::radians(-objects[idx].ry), glm::vec3(0.0, 1.0, 0.0)); //z축 기준 자전//
+	T1 = glm::translate(T1, glm::vec3(objects[idx].tx, objects[idx].ty, objects[idx].tz));//위치//
+	S2 = glm::scale(S2, glm::vec3(objects[idx].sx, objects[idx].sy, objects[idx].sz));//크기//
+	transformMatrix = R1 * R2 * R3 * T1 *  S2;
+	transformMatrix2 = R1 * R2 * R3 * T1 * R4* S2;
 }

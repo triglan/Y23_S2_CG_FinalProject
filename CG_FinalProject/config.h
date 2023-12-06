@@ -23,7 +23,7 @@
 #define X_POS 450
 #define Y_POS 50
 
-#define MODEL_COUNT 2000 // 모델 개수의 최대값
+#define MODEL_COUNT 3000 // 모델 개수의 최대값
 using namespace std;
 
 //구조체 선언
@@ -47,6 +47,8 @@ extern glm::mat4 transformMatrix, view, projection, lightMatrix;
 
 extern unsigned int projectionLocation, viewLocation, modelLocation, viewPosLocation;
 extern unsigned int lightPosLocation, lightColorLocation, objColorLocation;
+
+extern glm::mat4 transformMatrix2;//
 
 extern int TIMER_SPEED;
 

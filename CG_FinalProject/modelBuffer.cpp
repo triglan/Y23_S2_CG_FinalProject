@@ -31,15 +31,17 @@ void vertexInput(int idx) {  // vertex
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertexCube), vertexCube, GL_STATIC_DRAW);
 		break;
 	}
-	if(idx >= 1000)
+	if(2000>idx&& idx >= 1000)
 		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
+	else if(2000 <= idx)
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertexCube), vertexCube, GL_STATIC_DRAW);
 	else
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertexCube), vertexCube, GL_STATIC_DRAW);
 
 }
 
 void setBuffer(int idx, int bufferMode) {
-	if (idx >= 1000) {
+	if (2000>idx&& idx >= 1000) {
 		glGenVertexArrays(1, &VAO[idx]);
 		glBindVertexArray(VAO[idx]);
 		glGenBuffers(1, &VBO);

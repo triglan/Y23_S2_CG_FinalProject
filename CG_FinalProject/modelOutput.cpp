@@ -166,7 +166,7 @@ void setTransform(int idx) {  // 변환 세팅
 		razer_setTransform(idx);
 		break;
 	}
-	case 'c'://캐논 볼
+	case 'c': case 'b'://캐논 볼
 	{
 		cannon_setTransform(idx);
 		break;
@@ -196,24 +196,35 @@ void modelOutput(int idx) {  // 모델 출력
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(robot_bb)); // modelTransform
 		glDrawArrays(GL_TRIANGLES, 0, 36);  //
-		//crash(robot_body_transfrom, robot_body_transfrom);
+		
 		break;
 	case 1:
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(box_transfrom));
 		glDrawArrays(GL_TRIANGLES, 0, 36);
-		crash(box_transfrom, robot_bb);//외ㄴ쪽에 로봇(무조건-즉, 각도 바뀌어서 좌표엉망이됌)
 		break;
 	}
-
+	
 	if (objects[idx].NewObject != '0') {
 		glUniform3f(objColorLocation, objects[idx].r, objects[idx].g, objects[idx].b);
 
-		glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(transformMatrix));
-		if (idx >= 1000)
+		glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(transformMatrix2));
+		if (2000 > idx && idx >= 1000)
+		{
 			glDrawArrays(GL_TRIANGLES, 0, vertices.size());
-		else
+		}
+		else if (2000 <= idx&& idx<3000)
+		{
+			glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(transformMatrix2));
 			glDrawArrays(GL_TRIANGLES, 0, 36);
+			//crash(transformMatrix2, robot_bb);//
+		}
+		else
+		{
+			glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(transformMatrix));
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+			crash(transformMatrix, robot_bb);
+		}
 	}
 
 }
@@ -250,12 +261,12 @@ bool crash(glm::mat4 box1, glm::mat4 box2)
 		|| position1_LT.z > position2_LB.z || position1_LB.z < position2_LT.z || position1_up.y < position2_down.y
 		|| position2_up.y < position1_down.y)
 	{
-		printf("충돌x\n");
+		//printf("충돌x\n");
 		return false;
 	}
 	else
 	{
-		printf("충돌\n");
+		printf("충돌 1");
 		return true;
 	}
 
