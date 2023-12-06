@@ -59,4 +59,6 @@ enum projectionMode {  // 원근 투영 / 직각 투영. 기본 원근 투영
 	modeOrtho, modePers
 };
 
+extern GLfloat SunAngle;
+
 #endif

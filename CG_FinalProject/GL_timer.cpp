@@ -63,7 +63,7 @@ void timerOperation(int value) {
 
 	//포탄 생산
 	if (makecannonball_count % 100 == 0) {
-		int randomAngle = dis(gen) * 30; //30배수로 랜덤 각도 생성
+		int randomAngle = 15 + dis(gen) * 30; //30배수로 랜덤 각도 생성
 		make_cannonball(-10, 0.05, randomAngle);
 	}
 	else if (makecannonball_count % 70 == 0) {
@@ -73,6 +73,8 @@ void timerOperation(int value) {
 
 	}
 	makecannonball_count++;
+
+	SunAngle += 0.2f;
 
 	//이동
 	{

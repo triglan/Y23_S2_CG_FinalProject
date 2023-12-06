@@ -54,7 +54,7 @@ void main(int argc, char** argv) {
 	{//유저
 		for (int i = 0; i < 12; i++)
 		{
-			make_cannon(-9, 1, i * 30);
+			make_cannon(-9, 1, 15 + i * 30);
 		}
 	}
 	// MODEL_COUNT는 config.h에 정의되어있음
