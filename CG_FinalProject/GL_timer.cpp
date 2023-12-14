@@ -91,6 +91,7 @@ void timerOperation(int value) {
 
 		//포탄 생산
 		if (makecannonball_count % 100 == 0) {
+			// playCannonSound = true;
 			std::uniform_int_distribution<> dis(0, 4); // 0부터 12까지의 범위에서 랜덤한 수 생성
 			int randomAngle = 15 + dis(gen) * 30; //30배수로 랜덤 각도 생성
 			make_cannonball(-10, 0.05, randomAngle);

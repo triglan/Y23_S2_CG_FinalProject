@@ -1,6 +1,7 @@
 ﻿// 키보드 조작
 #include "gl_func.h"
 #include "cannon.h"
+#include "soundController.cpp"
 bool key_w = false;
 bool key_a = false;
 bool key_s = false;
@@ -30,12 +31,13 @@ void keyDown(unsigned char KEY, int x, int y) {
 		key_d = true;
 		robot_screw_angle = 90;
 		break;
-	case 'j':
+	case 32:
 		key_j = true;
 		break;
 	case 'r':
 		resume_game = true;
 		game_clear = false;
+		bgmPlay = true;
 		SunAngle = -85.f;
 		for (int i = 0; i < MODEL_COUNT; i++)
 		{

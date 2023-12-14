@@ -5,6 +5,9 @@
 #include "RazerLauncher.h"
 #include "Razer.h"
 #include "sphere.h"
+#include "soundController.cpp"
+
+bool bgmStop, bgmPlay;
 
 bool crash(glm::mat4 box1, glm::mat4 box2);
 
@@ -286,6 +289,7 @@ void modelOutput(int idx) {  // 모델 출력
 			if (crash(transformMatrix2, robot_bb)) {
 				lightColor[0] = 0.2, lightColor[1] = 0.2, lightColor[2] = 0.2;
 				resume_game = false;
+				bgmStop = true;
 			}//
 		}
 		else
@@ -297,6 +301,7 @@ void modelOutput(int idx) {  // 모델 출력
 				&& (100 < objects[idx].lifetime && objects[idx].lifetime < 200)) {
 					lightColor[0] = 0.2, lightColor[1] = 0.2, lightColor[2] = 0.2;
 					resume_game = false;
+					bgmStop = true;
 			}
 		}
 	}

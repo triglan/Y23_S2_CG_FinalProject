@@ -6,6 +6,31 @@
 #include "cannon.h"
 #include "RazerLauncher.h"
 #include "Razer.h"
+#include "fmod.hpp"
+#include "fmod_errors.h"
+#include "soundController.cpp"
+
+// fmod 객체 선언
+// 채널, 사운드 파일 선언
+
+FMOD::System* ssystem;
+FMOD::Sound* bgm;
+FMOD::Channel* bgmChannel = 0;
+void* extradriverdata = 0;
+FMOD_RESULT result;
+
+
+void soundPlayer() {
+	if (bgmStop) {
+		bgmChannel->stop();
+		bgmStop = false;
+	}
+	if (bgmPlay) {
+		bgmChannel->stop();
+		ssystem->playSound(bgm, 0, false, &bgmChannel);
+		bgmPlay = false;
+	}
+}
 
 
 
@@ -28,14 +53,14 @@ GLvoid displayOutput() {
 		finishTransform(i); // 변환을 glsl로 전달
 		modelOutput(i);  // 최종 출력, 3개 함수 모두 modelOutput.cpp에 있음
 	}
-	
+	soundPlayer();
+
 	glutSwapBuffers();
 }
 
 GLvoid displayReshape(int w, int h) {
 	glViewport(0, 0, w, h);
 }
-
 void main(int argc, char** argv) {
 	{  // fold here
 		glutInit(&argc, argv);
@@ -49,6 +74,15 @@ void main(int argc, char** argv) {
 		}
 		else cout << "GLEW Initialized" << endl;
 
+		// fmod 초기화, 세팅
+		// 브금의 경우 여기서 repeat play
+		result = FMOD::System_Create(&ssystem); //--- 사운드 시스템 생성
+		if (result != FMOD_OK)
+			exit(0);
+		ssystem->init(32, FMOD_INIT_NORMAL, extradriverdata); //--- 사운드 시스템 초기화
+		ssystem->createSound(".//Sounds//stage1.mp3", FMOD_LOOP_NORMAL, 0, &bgm); //--- 1번 사운드 생성 및 설정
+		ssystem->playSound(bgm, 0, false, &bgmChannel);
+		
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_MULTISAMPLE);
 		//glEnable(GL_CULL_FACE);
