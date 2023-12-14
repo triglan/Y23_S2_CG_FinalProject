@@ -17,6 +17,8 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include "fmod.hpp"
+#include "fmod_errors.h"
 
 #define WIDTH 800  
 #define HEIGHT 800
@@ -47,10 +49,20 @@ extern glm::mat4 transformMatrix, view, projection, lightMatrix;
 
 extern unsigned int projectionLocation, viewLocation, modelLocation, viewPosLocation;
 extern unsigned int lightPosLocation, lightColorLocation, objColorLocation;
+extern GLfloat lightColor[3];
+
+extern bool resume_game;
+extern bool game_clear;
 
 extern glm::mat4 transformMatrix2;//
 
 extern int TIMER_SPEED;
+
+extern FMOD::System* ssystem;
+extern FMOD::Sound* sound1, * sound2;
+extern FMOD::Channel* channel;
+extern FMOD_RESULT result;
+extern void* extradriverdata;
 
 enum bufferMode {  // 버퍼 모드. 버퍼 초기화 시 modeInit 사용, 버텍스 업데이트 시 modeUpdate 사용 
 	modeInit, modeUpdate

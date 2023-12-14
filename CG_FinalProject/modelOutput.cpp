@@ -12,7 +12,6 @@ extern GLuint ID;
 extern GLuint VAO[MODEL_COUNT];  // MODEL_COUNT는 config.h에 정의되어있음
 
 
-
 glm::mat4 robot_body_transfrom;
 glm::mat4 robot_legR_transfrom;
 glm::mat4 robot_legL_transfrom;
@@ -41,7 +40,7 @@ void finishTransform(int idx) {  // 변환 전달
 	glUniform3f(lightPosLocation, lightPos.x, lightPos.y, lightPos.z);
 
 	lightColorLocation = glGetUniformLocation(ID, "lightColor"); // lightColor 값 전달: (1.0, 1.0, 1.0) 백색
-	glUniform3f(lightColorLocation, 1.0, 1.0, 1.0);
+	glUniform3f(lightColorLocation, lightColor[0], lightColor[1], lightColor[2]);
 
 	objColorLocation = glGetUniformLocation(ID, "objectColor"); // object Color값 전달: (1.0, 0.5, 0.3)의 색
 	glUniform3f(objColorLocation, 0.5, 0.5, 0.5);
@@ -284,14 +283,21 @@ void modelOutput(int idx) {  // 모델 출력
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 			//glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(transformMatrix2));
 			//glDrawArrays(GL_TRIANGLES, 0, 36);
-			crash(transformMatrix2, robot_bb);//
+			if (crash(transformMatrix2, robot_bb)) {
+				lightColor[0] = 0.2, lightColor[1] = 0.2, lightColor[2] = 0.2;
+				resume_game = false;
+			}//
 		}
 		else
 		{
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 			glUniformMatrix4fv(modelLocation, 1, GL_FALSE, value_ptr(transformMatrix));
 			glDrawArrays(GL_TRIANGLES, 0, 36);
-			crash(transformMatrix, robot_bb);
+			if (crash(transformMatrix, robot_bb) 
+				&& (100 < objects[idx].lifetime && objects[idx].lifetime < 200)) {
+					lightColor[0] = 0.2, lightColor[1] = 0.2, lightColor[2] = 0.2;
+					resume_game = false;
+			}
 		}
 	}
 

@@ -1,5 +1,6 @@
 ﻿// 키보드 조작
 #include "gl_func.h"
+#include "cannon.h"
 bool key_w = false;
 bool key_a = false;
 bool key_s = false;
@@ -32,6 +33,19 @@ void keyDown(unsigned char KEY, int x, int y) {
 	case 'j':
 		key_j = true;
 		break;
+	case 'r':
+		resume_game = true;
+		game_clear = false;
+		SunAngle = -85.f;
+		for (int i = 0; i < MODEL_COUNT; i++)
+		{
+			objects[i].NewObject = '0';
+		}
+		for (int i = 0; i < 12; i++)
+		{
+			make_cannon(-9, 1, 15 + i * 30);
+		}
+		lightColor[0] = 1.0f, lightColor[1] = 1.0f, lightColor[2] = 1.0f;
 	}
 	if (glutGetWindow() != 0)
 		glutPostRedisplay();
