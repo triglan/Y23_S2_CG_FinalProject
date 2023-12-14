@@ -19,9 +19,3 @@ bool game_clear = false;
 int TIMER_SPEED = 17;
 
 GLfloat SunAngle = -85.0f;
-
-//FMOD::System* ssystem;
-//FMOD::Sound* sound1, * sound2;
-//FMOD::Channel* channel = 0;
-//FMOD_RESULT result;
-//void* extradriverdata = 0;

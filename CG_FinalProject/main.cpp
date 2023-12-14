@@ -17,10 +17,6 @@ GLvoid displayOutput() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  
 	glUseProgram(ID);
 	
-	//result = FMOD::System_Create(&ssystem);
-	//ssystem->init(32, FMOD_INIT_NORMAL, extradriverdata);
-	//ssystem->createSound("Sounds\stage3.mp3", FMOD_LOOP_NORMAL, 0, &sound1); //--- 1번 사운드 생성 및 설정
-
 
 	setCamera(); // 이 부분은 여기서 건들 필요 없음
 	setProjection(projectionMode); // 이 부분은 여기서 건들 필요 없음
